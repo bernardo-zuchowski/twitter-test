@@ -1,8 +1,8 @@
 <template>
     <form class="flex items-center" action="" method="get">
-        <SolidSearchIcon class="absolute ml-1 w-4 h-4"/>
+        <SolidSearchIcon class="absolute ml-2 w-5 h-5"/>
         <input
-        class="search-focus border rounded-full border-blue-500 border-solid bg-white mr-3 pl-6 py-0.5"
+        class="shadow-inner rounded-full bg-gray-100 pl-8 py-1 text-black"
         type="text"
         >
     </form>

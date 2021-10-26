@@ -24,6 +24,7 @@
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^27.0.5",
     "jest": "^27.0.5",
+    "miragejs": "^0.1.42",
     "postcss": "^8.3.5",
     "ts-jest": "^27.0.3",
     "vue-jest": "^3.0.4"
