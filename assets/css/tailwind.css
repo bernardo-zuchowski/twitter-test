@@ -6,4 +6,11 @@
     * {
         font-family: 'Poppins', sans-serif;
     }
+    h1 {
+        font-size: 26px;
+    }
+    h3 {
+        font-size: 20px;
+        line-height: 1.5rem;
+    }
 }
