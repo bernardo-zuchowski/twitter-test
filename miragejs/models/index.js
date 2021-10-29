@@ -18,5 +18,4 @@ export default {
   messages: Model.extend({
     user: belongsTo(),
   }),
-  product: Model,
 };

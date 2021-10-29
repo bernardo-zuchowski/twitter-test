@@ -34,7 +34,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '@/plugins/mirage.js',
+    '@/plugins/mirage',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -58,7 +58,12 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+  //  '@nuxt/axios',
   ],
+
+  axios: {
+  //  baseURL: 'http://localhost:3000/api/',
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

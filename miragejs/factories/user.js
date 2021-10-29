@@ -1,5 +1,3 @@
-import { randomNumber } from './utils';
-
 /*
  * Mirage JS guide on Factories: https://miragejs.com/docs/data-layer/factories
  */
@@ -13,15 +11,13 @@ import faker from 'faker';
 export default {
   user: Factory.extend({
     name() {
-      return faker.fake('{{name.findName}}');
+      return faker.fake('{{name.firstName}} {{name.lastName}}');
     },
-    mobile() {
-      return faker.fake('{{phone.phoneNumber}}');
+    internet() {
+      return faker.fake('{{internet.userName}}');
     },
-    afterCreate(user, server) {
-      const messages = server.createList('message', randomNumber(10), { user });
-
-      user.update({ messages });
+    image() {
+      return faker.fake('{{image.avatar}}');
     },
   }),
 };
