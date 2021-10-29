@@ -4,6 +4,7 @@
 
 export default function routes() {
   this.namespace = 'api';
+  this.urlPrefix = 'http://localhost:3000';
 
   /*
    * A resource comprises all operations for a CRUD

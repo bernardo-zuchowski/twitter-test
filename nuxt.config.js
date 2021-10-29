@@ -58,14 +58,21 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-  //  '@nuxt/axios',
+    '@nuxtjs/axios',
   ],
 
   axios: {
-  //  baseURL: 'http://localhost:3000/api/',
+    baseURL: 'http://localhost:3000/api/',
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-  }
+  },
+
+  vue: {
+    config: {
+      productionTip: true,
+      devtools: true,
+    }
+  },
 }
