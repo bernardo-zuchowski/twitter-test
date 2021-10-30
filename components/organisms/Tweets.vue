@@ -3,7 +3,6 @@
         <h1>Tweets</h1>
         <div class="pt-4">
             <TweetsProfile/>
-            <TweetsInteractions/>
         </div>
     </div>
 </template>

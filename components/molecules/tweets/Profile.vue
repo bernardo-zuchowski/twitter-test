@@ -1,18 +1,25 @@
 <template>
-    <div class="flex divide-x">
-        <div v-for="user in users" :key="`user-${user.id}`" class="pr-2 flex-none flex-inline">
-            <img
-            class="object-cover w-24 h-24 rounded-xl border-4 border-white border-solid"
-            :src="user.image"
-            :alt="user.name"
-            />
-            <div class="text-center">
-                <h3>{{user.name}}</h3>
-                <div>@username</div>
+    <div class="flex-inline divide-y">
+        <div v-for="user in users" :key="`user-${user.id}`" class="py-2">
+            <div class="flex">
+                <div class="pr-1 flex-none">
+                    <img
+                    class="object-cover w-24 h-24 rounded-xl border-4 border-white border-solid"
+                    :src="user.image"
+                    :alt="user.name"
+                    />
+                </div>
+                <div class="w-full pl-1">
+                    <div class="grid grid-cols-2 gap-2 text-left">
+                        <h3>{{user.name}}</h3>
+                        <div>@{{user.username}}</div>
+                    </div>
+                    <div class="text-justify pt-2">
+                        {{user.content}}
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="text-justify pl-2">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur alias inventore aliquam unde eum a molestias blanditiis libero. Animi rerum blanditiis saepe cupiditate perspiciatis nam sunt fuga corporis repellat maxime.
+            <TweetsInteractions/>
         </div>
     </div>
 </template>
@@ -22,16 +29,15 @@ export default {
     data() {
         return {
             users: [],
-            messages: [],
         };
     },
 
-    created() {
+    mounted() {
         fetch("api/users")
-            .then((res) => res.json)
-            .then((json) => {
-                this.user = json.user;
-            })
+        .then(res => res.json())
+        .then(({ users }) => {
+            this.users = users;
+        });
     },
 }
 </script>
