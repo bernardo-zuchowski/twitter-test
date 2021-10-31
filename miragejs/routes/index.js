@@ -1,7 +1,7 @@
 export default function routes() {
   this.namespace = 'api';
 
-  this.resource('users');
+  this.get('users');
 
-  this.put('users');
+  this.patch("/users/:id");
 }

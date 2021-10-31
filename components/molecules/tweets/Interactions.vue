@@ -12,7 +12,11 @@
                 <SolidRefreshIcon class="w-4 h-4 mx-1"/>
                 <div>Retweet</div>
             </button>
-            <button class="px-2 flex">
+            <button
+            class="px-2 flex"
+            :class="{'text-yellow-600':isActive}"
+            @click="isActive = !isActive"
+            >
                 <SolidStarIcon class="w-4 h-4 mx-1"/>
                 <div>Favorite</div>
             </button>
@@ -23,3 +27,13 @@
         </div>
     </div>
 </template>
+
+<script>
+export default {
+    data() {
+        return {
+            isActive: false,
+        };
+  },
+}
+</script>
