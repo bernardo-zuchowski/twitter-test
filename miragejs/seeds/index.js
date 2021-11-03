@@ -1,5 +1,5 @@
 const usersSeeder = server => {
-  server.createList('user', 5);
+  server.createList('tweet', 5);
 };
 
 export default function seeds(server) {

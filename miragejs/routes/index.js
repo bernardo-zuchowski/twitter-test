@@ -1,7 +1,7 @@
 export default function routes() {
   this.namespace = 'api';
 
-  this.get('users');
+  this.get('tweets');
 
-  this.patch("/users/:id");
+  this.patch("/tweets/:id");
 }
