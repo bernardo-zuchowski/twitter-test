@@ -1,7 +1,9 @@
 export default function routes() {
-  this.namespace = 'api';
+	this.namespace = 'api';
 
-  this.get('tweets');
+	this.get('tweets');
+	this.get('trends');
+	this.get('follows');
 
-  this.patch("/tweets/:id");
+	this.patch('/tweets/:id');
 }

@@ -14,8 +14,8 @@
             </button>
             <button
             class="px-2 flex"
-            :class="{'text-yellow-600':isActive}"
-            @click="isActive = !isActive"
+            :class="{'text-yellow-600':isFav}"
+            @click="isFav = !isFav && addFav"
             >
                 <SolidStarIcon class="w-4 h-4 mx-1"/>
                 <div>Favorite</div>
@@ -30,10 +30,26 @@
 
 <script>
 export default {
-    data() {
-        return {
-            isActive: false,
-        };
-  },
-}
+	data() {
+		return {
+			tweet: [],
+			isFav: false,
+		};
+	},
+	methods: {
+		addFav() {
+			this.tweet.favorite++;
+		}
+	},
+	updated() {
+		fetch('api/tweets/:id', {
+			method: 'patch',
+			headers: {'content-type': 'application/json'},
+		})
+			.then(res => res.json())
+			.then(({addFav}) => {
+				this.tweet.favorite = addFav();
+			});
+	}
+};
 </script>

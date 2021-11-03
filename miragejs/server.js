@@ -5,17 +5,17 @@ import models from './models';
 import seeds from './seeds';
 
 const config = environment => {
-  const config = {
-    environment,
-    factories,
-    models,
-    routes,
-    seeds,
-  };
+	const config = {
+		environment,
+		factories,
+		models,
+		routes,
+		seeds,
+	};
 
-  return config;
+	return config;
 };
 
 export function makeServer({ environment = 'development' } = {}) {
-  return new Server(config(environment));
+	return new Server(config(environment));
 }

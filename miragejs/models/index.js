@@ -1,10 +1,7 @@
-import { Model, hasMany, belongsTo } from 'miragejs';
+import { Model } from 'miragejs';
 
 export default {
-  tweet: Model.extend({
-    messages: hasMany(),
-  }),
-  messages: Model.extend({
-    tweet: belongsTo(),
-  }),
+	tweet: Model,
+	trend: Model,
+	follow: Model,
 };
