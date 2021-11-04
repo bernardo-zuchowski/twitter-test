@@ -5,5 +5,5 @@ export default function routes() {
 	this.get('trends');
 	this.get('follows');
 
-	this.patch('/tweets/:id');
+	this.patch('tweets/:id');
 }
