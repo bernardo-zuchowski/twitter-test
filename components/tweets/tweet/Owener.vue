@@ -26,7 +26,7 @@
                 <div class="flex">
                     <TweetInteractionsReply/>
                     <TweetInteractionsRetweet/>
-                    <TweetInteractionsFavorite :id="tweet.id"/>
+                    <TweetInteractionsFavorite :favorite="tweet.favorite" :id="tweet.id"/>
                     <TweetInteractionsMore/>
                 </div>
             </div>

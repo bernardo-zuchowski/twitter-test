@@ -13,19 +13,22 @@
 export default {
 	props: {
 		id: String,
+		favorite: Number,
 	},
 	data() {
 		return {
-			tweet: [],
+			tweet: [
+				this.favorite,
+			],
 			isFav: false,
 		};
 	},
 	methods: {
 		addFav() {
 			if (this.isFav === false) {
-				return this.$emit.favorite++;
+				return this.tweet.favorite++;
 			} else {
-				return this.$emit.favorite--;
+				return this.tweet.favorite--;
 			}
 		}
 	},
@@ -35,8 +38,8 @@ export default {
 			headers: {'content-type': 'application/json'},
 		})
 			.then(res => res.json())
-			.then(({tweet}) => {
-				this.addFav = tweet;
+			.then(({favorite}) => {
+				this.addFav = favorite;
 			});
 	}
 };
