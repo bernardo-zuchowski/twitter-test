@@ -5,7 +5,7 @@
     @click="isFav = !isFav && addFav"
     >
         <SolidStarIcon class="w-4 h-4 mx-1"/>
-        <div>Favorite</div>
+        <div class="lg-max:hidden">Favorite</div>
     </button>
 </template>
 

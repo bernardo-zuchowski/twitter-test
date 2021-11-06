@@ -1,6 +1,6 @@
 <template>
     <button class="px-2 flex">
         <SolidReplyIcon class="w-4 h-4 mx-1"/>
-        <div>Reply</div>
+        <div class="lg-max:hidden">Reply</div>
     </button>
 </template>

@@ -1,5 +1,5 @@
 <template>
-    <nav class="flex-inline px-6 absolute bg-white rounded-b-full top-16 left-0 shadow-lg">
+    <nav class="px-6 absolute bg-white rounded-b-full top-16 left-0 shadow-lg">
         <NuxtLink to="/">
             <SolidHomeIcon class="w-6 h-6 mt-2"/>
         </NuxtLink>

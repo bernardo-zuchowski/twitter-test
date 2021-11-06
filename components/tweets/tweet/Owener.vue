@@ -1,5 +1,5 @@
 <template>
-    <div class="flex-inline divide-y">
+    <div class="divide-y">
         <div v-for="tweet in tweets" :key="`${tweet.id}`" class="py-2">
             <div class="flex">
                 <div class="pr-1 flex-none">
@@ -10,7 +10,7 @@
                     />
                 </div>
                 <div class="w-full pl-1">
-                    <div class="grid grid-cols-2 gap-2 text-left">
+                    <div class="xl-min:grid xl-min:grid-cols-2 xl-min:gap-2 text-left">
                         <h3>{{tweet.name}}</h3>
                         <div>@{{tweet.username}}</div>
                     </div>
@@ -21,7 +21,8 @@
             </div>
             <div class="flex justify-between text-xs pt-4">
                 <div>
-                    <div>Expand</div>
+                    <SolidArrowsExpandIcon class="sm-min:hidden h-4 w-4"/>
+                    <div class="sm-max:hidden">Expand</div>
                 </div>
                 <div class="flex">
                     <TweetInteractionsReply/>
