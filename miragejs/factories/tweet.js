@@ -16,10 +16,10 @@ export default {
 			return faker.lorem.sentences(2);
 		},
 		reply() {
-			return [];
+			return {};
 		},
 		favorite() {
-			return faker.datatype.number(30);
-		},
+			return {};
+		}
 	}),
 };

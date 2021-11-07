@@ -3,6 +3,7 @@ import factories from './factories';
 import routes from './routes';
 import models from './models';
 import seeds from './seeds';
+import serializers from './serializers';
 
 const config = environment => {
 	const config = {
@@ -11,6 +12,7 @@ const config = environment => {
 		models,
 		routes,
 		seeds,
+		serializers
 	};
 
 	return config;

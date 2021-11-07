@@ -1,8 +1,9 @@
 <template>
     <button
     class="px-2 flex"
-    :class="{'text-yellow-600':isFav}"
-    @click="isFav = !isFav && addFav"
+	type="submit"
+	:class="{'text-yellow-500':favorited}"
+    @click="isFav"
     >
         <SolidStarIcon class="w-4 h-4 mx-1"/>
         <div class="lg-max:hidden">Favorite</div>
@@ -13,34 +14,55 @@
 export default {
 	props: {
 		id: String,
-		favorite: Number,
+		favorite: Object,
 	},
 	data() {
-		return {
-			tweet: [
-				this.favorite,
-			],
-			isFav: false,
-		};
-	},
-	methods: {
-		addFav() {
-			if (this.isFav === false) {
-				return this.tweet.favorite++;
-			} else {
-				return this.tweet.favorite--;
+		if (typeof this.favorite.johnroe === "boolean") {
+			return {
+				favorited: Object.values(this.favorite.johnroe) //trocar johnroe por usuário logado tornando dinamico
+			} 
+		} else {
+			return {
+				favorited: false
 			}
 		}
 	},
-	updated() {
-		fetch('api/tweets/' + `${this.id}`, {
-			method: 'patch',
-			headers: {'content-type': 'application/json'},
-		})
-			.then(res => res.json())
-			.then(({favorite}) => {
-				this.addFav = favorite;
-			});
+	methods: {
+		isFav() {
+			if (this.favorited === false) {
+				fetch('api/tweets/' + `${this.id}`, {
+					method: 'patch',
+					headers: {'content-type': 'application/json'},
+					body: JSON.stringify({
+						tweet: {
+							favorite: {
+								'johnroe': true //trocar johnroe por usuário logado tornando dinamico
+							}
+						}
+					})
+				})
+					.then(res => res.json())
+					.then(json => console.log(json));
+				this.favorited = true;
+				return this.favorited
+			} else {
+				fetch('api/tweets/' + `${this.id}`, {
+					method: 'patch',
+					headers: {'content-type': 'application/json'},
+					body: JSON.stringify({
+						tweet: {
+							favorite: {
+								'johnroe': false, //trocar johnroe por usuário logado tornando dinamico
+							}
+						}
+					})
+				})
+					.then(res => res.json())
+					.then(json => console.log(json));
+				this.favorited = false;
+				return this.favorited
+			}
+		}
 	}
 };
 </script>
