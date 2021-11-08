@@ -3,7 +3,7 @@
 ![Alt text](screenshot.png?raw=true "Twitter-test")
 
 ## Build Setup
-###(MirageJs only works in development environment)
+### (MirageJs only works in development environment)
 
 ```bash
 # install dependencies
