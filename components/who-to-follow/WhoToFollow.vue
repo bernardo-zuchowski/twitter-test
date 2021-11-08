@@ -3,7 +3,7 @@
         <h1>Who to follow</h1>
         <ul class="pt-4 divide-y">
             <li v-for="follow in follows" :key="`${follow.id}`" class="py-2 lg-min:items-center lg-min:flex lg-min:justify-between">
-                <img :src='follow.avatar' class="lg-min:mr-2 lg-min:flex-none lg-max:m-auto lg-max:mt-2 xl-min:w-20 xl-max:w-16 rounded-xl object-cover">
+                <img :src='follow.avatar' class="lg-min:mr-2 lg-min:flex-none lg-max:m-auto lg-max:mt-2 xl-min:w-24 xl-max:w-16 lg-max:w-24 rounded-full rounded-full border border-gray-200 p-1 object-cover">
                 <div class="mx-auto text-center text-sm lg-max:pt-2">
                     <div>{{follow.name}}</div>
                     <div>@{{follow.username}}</div>

@@ -13,8 +13,8 @@
                     </div>
                     <div class="w-full divide-y divide-gray-200">
                         <div class="xl-min:grid xl-min:grid-cols-7 xl-min:gap-2 text-left pb-1">
-                            <h3 class="xl-min:col-start-1 col-span-3 pl-2">{{tweet.name}}</h3>
-                            <div class="xl-min:col-start-4 col-span-4">@{{tweet.username}}</div>
+                            <h3 class="xl-min:col-start-1 xl-min:col-span-3 pl-2">{{tweet.name}}</h3>
+                            <div class="xl-min:col-start-4 xl-min:col-span-4 pl-2">@{{tweet.username}}</div>
                         </div>
                         <div class="text-justify pt-1 pl-2">
                             {{tweet.content}}
