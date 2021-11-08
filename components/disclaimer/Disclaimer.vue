@@ -1,5 +1,5 @@
 <template>
-    <div class="shadow-md rounded-xl text-xs p-4 space-x-2 text-center">
+    <div class="shadow-md rounded-b-3xl lg-min:-mt-14 lg-max:-mt-10 px-4 pb-4 lg-min:pt-10 lg-max:pt-16 text-xs space-x-2 text-center">
         @ 2012 Twitter &nbsp;
         <a href="#">About</a>
         <a href="#">Help</a>
