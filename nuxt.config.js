@@ -56,7 +56,8 @@ export default {
 		'@nuxtjs/tailwindcss',
 		// https://github.com/whardier/nuxt-hero-icons
 		'@nuxt-hero-icons/outline/nuxt',
-		'@nuxt-hero-icons/solid/nuxt'
+		'@nuxt-hero-icons/solid/nuxt',
+		'@nuxtjs/pwa'
 	],
 
 	// Modules: https://go.nuxtjs.dev/config-modules
