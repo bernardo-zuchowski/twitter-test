@@ -1,10 +1,4 @@
 <template>
-<<<<<<< Updated upstream
-    <div class="h-full shadow-md rounded-xl divide-y p-4">
-        <h1>Tweets</h1>
-        <div class="pt-4">
-            <TweetOwener/>
-=======
     <div class="h-full shadow-md rounded-b-3xl divide-y p-4 lg-max:-mt-14">
         <h1 class="lg-max:pt-6">Tweets</h1>
         <div class="divide-y pt-4">
@@ -40,7 +34,23 @@
                     </div>
                 </div>
             </div>
->>>>>>> Stashed changes
         </div>
     </div>
 </template>
+
+<script>
+export default {
+    data() {
+        return {
+            tweets: []
+        }
+    },
+    mounted() {
+        fetch('api/tweets')
+        .then(res => res.json())
+        .then(({tweets}) => {
+            this.tweets = tweets
+        })
+    }
+}
+</script>

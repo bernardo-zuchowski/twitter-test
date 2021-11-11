@@ -1,6 +1,5 @@
 import { Server, Model, RestSerializer, belongsTo, hasMany } from "miragejs"
 import factories from './factories';
-import tweet from "./factories/tweet";
 
 const config = environment => {
 	const config = {
