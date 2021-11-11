@@ -3,7 +3,7 @@
     class="px-2 flex"
 	type="submit"
 	:class="{'text-yellow-500':favorited}"
-    @click="isFav"
+    @click="favorite"
     >
         <SolidStarIcon class="w-4 h-4 mx-1"/>
         <div class="lg-max:hidden">Favorite</div>
@@ -28,7 +28,7 @@ export default {
 		}
 	},
 	methods: {
-		isFav() {
+		favorite() {
 			if (this.favorited === false) {
 				fetch('api/tweets/' + `${this.id}`, {
 					method: 'patch',
