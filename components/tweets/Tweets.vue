@@ -40,17 +40,18 @@
 
 <script>
 export default {
-    data() {
-        return {
-            tweets: []
-        }
-    },
-    mounted() {
-        fetch('api/tweets')
-        .then(res => res.json())
-        .then(({tweets}) => {
-            this.tweets = tweets
-        })
-    }
-}
+	data() {
+		return {
+			tweets: [],
+		};
+	},
+
+	mounted() {
+		fetch('api/tweets')
+			.then(res => res.json())
+			.then(({ tweets }) => {
+				this.tweets = tweets;
+			});
+	},
+};
 </script>

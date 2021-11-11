@@ -5,5 +5,6 @@ export default function routes() {
 	this.get('trends');
 	this.get('follows');
 
+	this.post('tweets')
 	this.patch('tweets/:id');
 }
