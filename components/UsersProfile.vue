@@ -5,7 +5,7 @@
         alt="Users banner">
         <div class="divide-y">
             <div class="flex flex-wrap justify-between px-4">
-                <img class="object-cover mx-auto -mt-12 w-32 h-32 rounded-full border-8 border-white border-solid"
+                <img class="object-cover mx-auto -mt-12 w-32 h-32 rounded-full border-8 border-gray-50 border-solid"
                 :src="user.avatar"
                 alt="Your photo">
                 <div class="mt-4 text-center mx-auto px-4">
@@ -27,7 +27,7 @@
                     <div class="px-1">89</div>
                 </div>
             </div>
-            <NewTweetForm class="m-4 pb-4"/>
+            <NewTweet class="m-4 pb-4"/>
         </div>
     </div>
 </template>

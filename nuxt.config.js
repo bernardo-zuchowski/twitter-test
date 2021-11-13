@@ -65,7 +65,7 @@ export default {
 	],
 
 	axios: {
-		//baseURL: 'http://localhost:3000/api/',
+		baseURL: 'http://localhost:3000/api/',
 	},
 
 	// Build Configuration: https://go.nuxtjs.dev/config-build
