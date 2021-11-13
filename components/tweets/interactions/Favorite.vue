@@ -3,7 +3,7 @@
     class="px-2 flex"
 	type="submit"
 	:class="{'text-yellow-500':favorited}"
-    @click="favorite"
+    @click.prevent="favorite"
     >
         <SolidStarIcon class="w-4 h-4 mx-1"/>
         <div class="lg-max:hidden">Favorite</div>
@@ -38,8 +38,8 @@ export default {
 			const route = this.favorited === false ? 'favorites' : `tweets/${favIdToDel}/favorites`;
 			const body = {
 				'favorite': {
-					'authorId': this.loggedUser.id,
-					'tweetId': `${this.id}`
+					'userId': this.loggedUser.id,
+					'tweetId': this.id
 				}
 			}
 			const requisition = (r, b) => (

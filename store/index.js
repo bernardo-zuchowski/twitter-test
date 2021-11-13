@@ -1,13 +1,13 @@
 export const state = () => ({
-    user: [],
+    loggedUser: [],
     users: [],
     tweets: [],
     favorites: [],
 })
 
 export const mutations =  {
-    SET_LOGGED_USER(state, user) {
-        state.user = user
+    SET_LOGGED_USER(state, loggedUser) {
+        state.loggedUser = loggedUser
     },
     SET_USERS(state, users) {
         state.users = users

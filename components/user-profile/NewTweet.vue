@@ -11,6 +11,9 @@
 
 <script>
 export default {
+    props: {
+        authorId: String,
+    },
     data() {
         return {
             text: '',
@@ -25,6 +28,7 @@ export default {
         createPost() {
             this.$axios.post('api/tweet', {
                 "tweet": { // tornar dinânimico os dados de usuário
+                    "authorId": this.authorId,
                     "uuid": this.loggedUser.uuid,
                     "name": this.loggedUser.name,
                     "username": this.loggedUser.username,
