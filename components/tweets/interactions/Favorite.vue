@@ -13,35 +13,44 @@
 <script>
 export default {
 	props: {
-		id: String,
-		uuid: String,
+		id: String
 	},
+
 	data() {
 		return {
 			favorited: false
 		}
 	},
+
+    computed: {
+        favorites() {
+            return this.$store.state.favorites;
+        },
+		loggedUser() {
+            return this.$store.state.loggedUser;
+        },
+    },
+
 	methods: {
 		favorite() {
-			let route = this.favorited === false ? 'api/favorites' : `api/favorites/${this.id}`
-			let requisition = this.favorited === false ? "post" : "delete"
-			const options = {
-				method: patch,
-				headers: {'content-type': 'application/json'},
-				body: JSON.stringify({
-					"favorite": {
-						"tweetId": "1", //tornar dinamico
-						"userId": "5", //tornar dinamico
-					}
-				})
-			};
-
-
-			fetch(`api/favorites`, options)
-			.then(res => res.json())
-			.then(json => console.log(json));
-			this.favorited = true;
-		}
+			const favDataLength = this.$store.state.favorites.length;
+			const favIdToDel = favDataLength < 2 ? 2 : favDataLength;
+			const route = this.favorited === false ? 'favorites' : `tweets/${favIdToDel}/favorites`;
+			const body = {
+				'favorite': {
+					'authorId': this.loggedUser.id,
+					'tweetId': `${this.id}`
+				}
+			}
+			const requisition = (r, b) => (
+				this.favorited === false ? this.$axios.post(r, b) : this.$axios.delete(r, b)
+			)
+			requisition(route, body)
+			.then(response => {
+                this.$store.commit('SET_TWEETS', response.data)
+			});
+			this.favorited = !this.favorited
+		},
 	}
 };
 </script>

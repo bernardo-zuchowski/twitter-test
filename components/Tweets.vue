@@ -29,7 +29,7 @@
                     <div class="flex">
                         <InteractionsReply/>
                         <InteractionsRetweet/>
-                        <InteractionsFavorite :favorite="tweet.favorites" :uuid="tweet.uuid" :id="tweet.id"/>
+                        <InteractionsFavorite/>
                         <InteractionsMore/>
                     </div>
                 </div>
@@ -40,18 +40,14 @@
 
 <script>
 export default {
-	data() {
-		return {
-			tweets: [],
-		};
-	},
+    computed: {
+        tweets() {
+            return this.$store.state.tweets.tweets;
+        }
+    },
 
 	mounted() {
-		fetch('api/tweets')
-			.then(res => res.json())
-			.then(({ tweets }) => {
-				this.tweets = tweets;
-			});
+		this.$store.dispatch('getTweets')
 	},
 };
 </script>

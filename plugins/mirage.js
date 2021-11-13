@@ -1,4 +1,4 @@
-import { Server, Model, RestSerializer, belongsTo, hasMany } from "miragejs"
+import { Server, Model, RestSerializer, belongsTo, hasMany, JSONAPISerializer } from "miragejs"
 import factories from './factories';
 
 const config = environment => {
@@ -21,16 +21,20 @@ const config = environment => {
 		},
 		routes() {
 			this.namespace = 'api';
+			this.urlPrefix = 'https://localhost:3000'
 		
 			this.get('users');
 			this.get('users/:id');
 			this.get('tweets');
       
-			this.patch('favorites/:id');
+			this.post('favorites');
+			this.post('tweets');
+			this.del('tweets/:id/favorites');
 		},
 		seeds(server) {
 			server.createList('user', 4)
       		server.createList('tweet', 5)
+			server.createList('favorite', 1)
 		},
 		serializers: {
 			application: RestSerializer,

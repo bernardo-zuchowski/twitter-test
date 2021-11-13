@@ -40,12 +40,9 @@ export default {
 	// Auto import components: https://go.nuxtjs.dev/config-components
 	components: [
 		'~components/',
-		'~components/disclaimer',
 		'~components/the-header',
-		'~components/trends',
 		'~components/tweets',
 		'~components/user-profile',
-		'~components/who-to-follow',
 	],
 
 	// Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules

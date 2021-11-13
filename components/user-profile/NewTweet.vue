@@ -16,24 +16,25 @@ export default {
             text: '',
         }
     },
+    computed: {
+        loggedUser() {
+            return this.$store.state.loggedUser;
+        },
+    },
     methods: {
         createPost() {
-            fetch('api/tweets', {
-                method: 'post',
-                headers: {'content-type': 'application/json'},
-                body: JSON.stringify({
-						tweet: { // tornar dinânimico os dados de usuário
-                            name: 'John Roe',
-                            username: 'johnroe',
-                            image: 'https://www.psicologo.com.br/wp-content/uploads/sou-uma-pessoa-boa-ou-nao.jpg',
-                            content: this.text,
-                            reply: {},
-                            favorite: {},
-                        }
-					})
+            this.$axios.post('api/tweet', {
+                "tweet": { // tornar dinânimico os dados de usuário
+                    "uuid": this.loggedUser.uuid,
+                    "name": this.loggedUser.name,
+                    "username": this.loggedUser.username,
+                    "avatar": this.loggedUser.avatar,
+                    "content": this.text,
+                }
             })
-                .then(res => res.json())
-                .then(json => console.log(json));
+            .then(response => {
+                this.$store.commit('SET_TWEETS', response.data)
+            })
             this.$refs.newTweet.reset()
         },
     }

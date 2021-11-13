@@ -16,7 +16,7 @@ export default {
 			return faker.image.avatar();
 		},
         banner() {
-            return 'https://picsum.photos/320/240';
+            return 'http://veer-interiors.com/wp-content/uploads/2020/04/Hero-Banner-Placeholder-Light-1024x480-1.png';
         },
     }),
 }
