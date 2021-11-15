@@ -13,7 +13,8 @@
 <script>
 export default {
 	props: {
-		id: String
+		tweetId: String,
+		tweetFavs: Array
 	},
 
 	data() {
@@ -23,32 +24,29 @@ export default {
 	},
 
     computed: {
-        favorites() {
-            return this.$store.state.favorites;
-        },
-		loggedUser() {
-            return this.$store.state.loggedUser;
+		user() {
+            return this.$store.state.user;
         },
     },
 
 	methods: {
-		favorite() {
-			const favDataLength = this.$store.state.favorites.length;
-			const favIdToDel = favDataLength < 2 ? 2 : favDataLength;
-			const route = this.favorited === false ? 'favorites' : `tweets/${favIdToDel}/favorites`;
-			const body = {
+		async favorite() {
+			const body = this.favorited === false ? {
 				'favorite': {
-					'userId': this.loggedUser.id,
-					'tweetId': this.id
+					'userId': `${this.user.id}`,
+					'tweetId': `${this.tweetId}`
+				}
+			} : {
+				'favorite': {
+					'userId': null,
+					'tweetId': null
 				}
 			}
-			const requisition = (r, b) => (
-				this.favorited === false ? this.$axios.post(r, b) : this.$axios.delete(r, b)
-			)
-			requisition(route, body)
-			.then(response => {
-                this.$store.commit('SET_TWEETS', response.data)
-			});
+			const requisition = this.favorited === false ? await this.$axios.post('favorites', body)
+												   : await this.$axios.patch(`favorites/${this.tweetId}/tweets`, body)
+
+			this.$store.commit('SET_FAVORITES', requisition)
+
 			this.favorited = !this.favorited
 		},
 	}

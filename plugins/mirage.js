@@ -29,12 +29,11 @@ const config = environment => {
       
 			this.post('favorites');
 			this.post('tweets');
-			this.del('tweets/:id/favorites');
+			this.patch('favorites/:id/tweets');
 		},
 		seeds(server) {
 			server.createList('user', 4)
       		server.createList('tweet', 5)
-			server.createList('favorite', 1)
 		},
 		serializers: {
 			application: RestSerializer,

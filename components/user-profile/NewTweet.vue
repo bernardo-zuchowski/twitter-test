@@ -20,25 +20,26 @@ export default {
         }
     },
     computed: {
-        loggedUser() {
-            return this.$store.state.loggedUser;
+        user() {
+            return this.$store.state.user;
         },
     },
     methods: {
-        createPost() {
-            this.$axios.post('api/tweet', {
-                "tweet": { // tornar dinânimico os dados de usuário
-                    "authorId": this.authorId,
-                    "uuid": this.loggedUser.uuid,
-                    "name": this.loggedUser.name,
-                    "username": this.loggedUser.username,
-                    "avatar": this.loggedUser.avatar,
-                    "content": this.text,
+        async createPost() {
+            const requisition = await this.$axios.$post('tweets', {
+                "tweet": {
+                    "authorName": `${this.user.name}`,
+                    "authorUser": `${this.user.username}`,
+                    "authorAvatar": `${this.user.avatar}`,
+                    "content": `${this.text}`,
+                    "favorites": [],
+                    "user": `${this.authorId}`,
+                    "uuid": `${this.user.uuid}`,
                 }
             })
-            .then(response => {
-                this.$store.commit('SET_TWEETS', response.data)
-            })
+            
+            this.$store.commit('SET_TWEETS', requisition)
+
             this.$refs.newTweet.reset()
         },
     }

@@ -29,7 +29,7 @@
                     <div class="flex">
                         <InteractionsReply/>
                         <InteractionsRetweet/>
-                        <InteractionsFavorite/>
+                        <InteractionsFavorite :tweetId="tweet.id" :tweetFavs="tweet.favorite"/>
                         <InteractionsMore/>
                     </div>
                 </div>
