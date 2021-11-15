@@ -49,5 +49,8 @@ export default {
 	mounted() {
 		this.$store.dispatch('getTweets')
 	},
+//    updated() {
+//        this.$store.dispatch('getTweets')
+//    }
 };
 </script>

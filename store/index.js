@@ -31,6 +31,6 @@ export const actions =  {
     },
     async getTweets({ commit }) {
         const route = await this.$axios.get('tweets')
-        commit('SET_TWEETS', route.data.tweets)
+        commit('SET_TWEETS', route.data.tweets.reverse())
     },
 }
