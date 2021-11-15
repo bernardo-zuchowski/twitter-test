@@ -42,7 +42,7 @@
 export default {
     computed: {
         tweets() {
-            return this.$store.state.tweets.tweets;
+            return this.$store.state.tweets;
         }
     },
 
