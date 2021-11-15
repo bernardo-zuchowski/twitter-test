@@ -16,5 +16,8 @@ export default {
 		content() {
 			return faker.lorem.sentences(2);
 		},
-	})
+		uuid() {
+			return faker.datatype.uuid();
+		},
+	}),
 };

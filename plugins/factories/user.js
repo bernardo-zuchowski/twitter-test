@@ -4,7 +4,7 @@ import faker from 'faker'
 export default {
     user: Factory.extend({
         uuid() {
-            return faker.datatype.uuid()
+            return faker.datatype.uuid();
         },
         name() {
 			return faker.fake('{{name.firstName}}' + ' ' + '{{name.lastName}}');
@@ -16,7 +16,7 @@ export default {
 			return faker.image.avatar();
 		},
         banner() {
-            return 'https://www.teclasap.com.br/wp-content/uploads/2008/11/sky-x-heaven.jpg';
-        }
-    })
+            return "https://picsum.photos/340/244";
+        },
+    }),
 }

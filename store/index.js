@@ -27,10 +27,10 @@ export const actions =  {
     },
     async getUsers({ commit }) {
         const route = await this.$axios.get('users')
-        commit('SET_LOGGED_USER', route.data.users)
+        commit('SET_USERS', route.data.users)
     },
     async getTweets({ commit }) {
         const route = await this.$axios.get('tweets')
-        commit('SET_LOGGED_USER', route.data.tweets)
+        commit('SET_TWEETS', route.data.tweets)
     },
 }

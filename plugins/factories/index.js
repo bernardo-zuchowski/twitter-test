@@ -6,6 +6,5 @@ import user from './user';
 export default {
 	...user,
 	...tweet,
-	...retweet,
-	...favorites
+	...retweet
 };

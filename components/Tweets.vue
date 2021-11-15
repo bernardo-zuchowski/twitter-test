@@ -1,5 +1,5 @@
 <template>
-    <div class="h-full shadow-md rounded-b-3xl divide-y p-4 lg-max:-mt-14">
+    <div class="h-full shadow-md rounded-b-3xl divide-y p-4 lg-max:-mt-14 ">
         <h1 class="lg-max:pt-6">Tweets</h1>
         <div class="divide-y pt-4">
             <div v-for="tweet in tweets" :key="`${tweet.id}`" class="py-2">
@@ -27,10 +27,10 @@
                         <div class="sm-max:hidden">Expand</div>
                     </div>
                     <div class="flex">
-                        <TweetInteractionsReply/>
-                        <TweetInteractionsRetweet/>
-                        <TweetInteractionsFavorite :favorite="tweet.favorite" :id="tweet.id"/>
-                        <TweetInteractionsMore/>
+                        <InteractionsReply/>
+                        <InteractionsRetweet/>
+                        <InteractionsFavorite/>
+                        <InteractionsMore/>
                     </div>
                 </div>
             </div>
@@ -40,18 +40,14 @@
 
 <script>
 export default {
-	data() {
-		return {
-			tweets: [],
-		};
-	},
+    computed: {
+        tweets() {
+            return this.$store.state.tweets;
+        }
+    },
 
 	mounted() {
-		fetch('api/tweets')
-			.then(res => res.json())
-			.then(({ tweets }) => {
-				this.tweets = tweets;
-			});
+		this.$store.dispatch('getTweets')
 	},
 };
 </script>

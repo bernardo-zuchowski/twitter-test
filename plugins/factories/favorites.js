@@ -1,12 +1,12 @@
-import { Factory } from "miragejs";
+import { Factory, association } from "miragejs";
 
 export default {
     favorites: Factory.extend({
         authorId() {
-            return String
+            return null;
         },
         tweetId() {
-            return String
-        },
+            return null;
+        }
     })
 }

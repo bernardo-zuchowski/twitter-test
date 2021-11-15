@@ -40,12 +40,9 @@ export default {
 	// Auto import components: https://go.nuxtjs.dev/config-components
 	components: [
 		'~components/',
-		'~components/disclaimer',
 		'~components/the-header',
-		'~components/trends',
 		'~components/tweets',
 		'~components/user-profile',
-		'~components/who-to-follow',
 	],
 
 	// Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
@@ -65,7 +62,7 @@ export default {
 	],
 
 	axios: {
-		//baseURL: 'http://localhost:3000/api/',
+		baseURL: 'http://localhost:3000/api/',
 	},
 
 	// Build Configuration: https://go.nuxtjs.dev/config-build
