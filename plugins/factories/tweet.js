@@ -36,5 +36,19 @@ export default {
 				return null
 			}
 		}),
+		reply: trait({
+			authorName() {
+				return null
+			},
+			authorUser() {
+				return null
+			},
+			authorAvatar() {
+				return null
+			},
+			content() {
+				return null
+			},
+		}),
 	})
 };
