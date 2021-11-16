@@ -14,7 +14,6 @@
 export default {
 	props: {
 		tweetId: String,
-		tweetFavs: Array
 	},
 
 	data() {
@@ -43,7 +42,7 @@ export default {
 				}
 			}
 			const requisition = this.favorited === false ? await this.$axios.post('favorites', body)
-												   : await this.$axios.patch(`favorites/${this.tweetId}/tweets`, body)
+														 : await this.$axios.patch(`favorites/${this.tweetId}/tweets`, body)
 
 			this.$store.commit('SET_FAVORITES', requisition)
 

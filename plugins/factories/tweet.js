@@ -1,4 +1,4 @@
-import { Factory, association } from 'miragejs';
+import { Factory, association, trait } from 'miragejs';
 import faker from 'faker';
 
 export default {
@@ -19,5 +19,22 @@ export default {
 		uuid() {
 			return faker.datatype.uuid();
 		},
-	}),
+		retweet: trait({
+			authorName() {
+				return null
+			},
+			authorUser() {
+				return null
+			},
+			authorAvatar() {
+				return null
+			},
+			content() {
+				return null
+			},
+			tweetId() {
+				return null
+			}
+		}),
+	})
 };

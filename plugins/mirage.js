@@ -26,7 +26,8 @@ const config = environment => {
 			this.get('users');
 			this.get('users/:id');
 			this.get('tweets');
-      
+			this.get('tweets/:id');
+
 			this.post('favorites');
 			this.post('tweets');
 			this.patch('favorites/:id/tweets');

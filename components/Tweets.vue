@@ -16,9 +16,25 @@
                             <h3 class="xl-min:col-start-1 xl-min:col-span-3 pl-2">{{tweet.authorName}}</h3>
                             <div class="xl-min:col-start-4 xl-min:col-span-4 pl-2">@{{tweet.authorUser}}</div>
                         </div>
-                        <div class="text-justify pt-1 pl-2">
+
+                        <div v-if="tweet.content !== null" class="text-justify pt-1 pl-2">
                             {{tweet.content}}
                         </div>
+
+                        <div v-else
+                        class="bg-gray-100 rounded-xl m-2 px-2 pt-2 pb-1 divide-y divide-white shadow-inner">
+                            <div class="pb-2 flex flex-wrap">
+                                <img
+                                class="object-cover w-5 h-5 rounded-full mr-1 self-center flex-none"
+                                :src="tweet.retweet.authorAvatar"
+                                :alt="tweet.retweet.authorName + '\'s photo'"
+                                />
+                                <div class="text-xs text-gray-800 px-1 self-center flex-1">{{tweet.retweet.authorName}}</div>
+                                <div class="text-xs text-gray-500 px-1 self-center flex-1">@{{tweet.retweet.authorUser}}</div>
+                            </div>
+                            <div class="text-justify pt-1">{{tweet.retweet.content}}</div>
+                        </div>
+
                     </div>
                 </div>
                 <div class="flex justify-between text-xs pt-4">
@@ -28,8 +44,8 @@
                     </div>
                     <div class="flex">
                         <InteractionsReply/>
-                        <InteractionsRetweet/>
-                        <InteractionsFavorite :tweetId="tweet.id" :tweetFavs="tweet.favorite"/>
+                        <InteractionsRetweet :tweet="tweet"/>
+                        <InteractionsFavorite :tweetId="tweet.id"/>
                         <InteractionsMore/>
                     </div>
                 </div>
@@ -49,8 +65,8 @@ export default {
 	mounted() {
 		this.$store.dispatch('getTweets')
 	},
-//    updated() {
-//        this.$store.dispatch('getTweets')
-//    }
+    updated() {
+        this.$store.dispatch('getTweets')
+    }
 };
 </script>
