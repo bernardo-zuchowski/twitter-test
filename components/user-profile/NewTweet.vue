@@ -1,9 +1,9 @@
 <template>
-    <form ref="newTweet" @submit.prevent="createPost">
+    <form ref="newTweet" @submit.prevent="createTweet">
         <input
         class="mt-4 w-full shadow-inner rounded-full bg-gray-100 py-1 px-2 text-black"
         type="text"
-        placeholder="Compose new Tweet"
+        placeholder="Compose new tweet"
         v-model="text"
         >
     </form>
@@ -25,7 +25,7 @@ export default {
         },
     },
     methods: {
-        async createPost() {
+        async createTweet() {
             const requisition = await this.$axios.$post('tweets', {
                 "tweet": {
                     "authorName": `${this.user.name}`,

@@ -38,17 +38,8 @@
                     </div>
                 </div>
                 <Interactions :tweetObj="tweet"/>
-                <div v-if="tweet.reply === null" class="px-4 pt-2 pb-4 -mx-4 shadow-lg rounded-b-xl">
-                    <div class="pb-2 flex flex-wrap">
-                        <img
-                        class="object-cover w-10 h-10 rounded-full mr-1 self-center flex-none"
-                        :src="tweet.reply.authorAvatar"
-                        :alt="tweet.reply.authorName + '\'s photo'"
-                        />
-                        <div class="text-xs text-gray-800 px-1 self-center flex-1">{{tweet.reply.authorName}}</div>
-                        <div class="text-xs text-gray-500 px-1 self-center flex-1">@{{tweet.reply.authorUser}}</div>
-                    </div>
-                    <div class="text-xs text-justify pt-1">{{tweet.reply.content}}</div>
+                <div v-if="tweet.replies.length > 0">
+                    <RepliesPerTweet :repliesIds="tweet.replies"/>
                 </div>
             </div>
         </div>
@@ -60,7 +51,7 @@ export default {
     computed: {
         tweets() {
             return this.$store.state.tweets;
-        }
+        },
     },
 
 	mounted() {

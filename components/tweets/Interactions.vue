@@ -6,18 +6,40 @@
                 <div class="sm-max:hidden">Expand</div>
             </div>
             <div class="flex">
-                <InteractionsReply/>
+                <button @click.prevent="showHide" class="px-2 flex">
+                    <SolidReplyIcon class="w-4 h-4 mx-1"/>
+                    <div class="lg-max:hidden">Reply</div>
+                </button>
                 <InteractionsRetweet :tweet="tweet"/>
                 <InteractionsFavorite :tweetId="tweet.id"/>
                 <InteractionsMore/>
             </div>
         </div>
-        <form :key="`${tweet.id}`">
-            <textarea class="w-full resize-none rounded-xl p-2 text-xs border border-gray-200" :class="{'hidden':replyHide, 'block':replyShow}" rows="3"></textarea>
+        <form
+        @submit.prevent="createReply"
+        ref="newReply"
+        class="relative px-8"
+        :class="{'hidden':textareaHide, 'block':textareaShow}"
+        >
+            <textarea
+            class="w-full resize-none rounded-xl p-2 mb-4 text-xs border border-gray-200"
+            placeholder="Reply this tweet"
+            v-model="text"
+            rows="2"/>
+            <button
+            class="absolute text-xs right-16 bottom-3 bg-white rounded-full shadow hover:shadow-inner hover:bg-gray-100">
+                <SolidCheckIcon class="w-5 h-5 m-1"/>
+            </button>
+            <button
+            class="absolute text-xs right-5 bottom-3 bg-white rounded-full shadow hover:shadow-inner hover:bg-gray-100"
+            @click.prevent="showHide">
+                <SolidXIcon class="w-5 h-5 m-1"/>
+            </button>
         </form>
     </div>
 </template>
 
+        
 <script>
 export default {
     props: {
@@ -26,15 +48,40 @@ export default {
     data() {
         return {
             tweet: this.tweetObj,
-            replyShow: false,
-            replyHide: true,
+            textareaShow: false,
+            textareaHide: true,
+            text: ''
         }
     },
-    created() {
-        this.$nuxt.$on('reply-textarea', () => {
-            this.replyShow = !this.replyShow
-            this.replyHide = !this.replyHide
-        })
+    computed: {
+        user() {
+            return this.$store.state.user
+        }
+    },
+    methods: {
+        showHide() {
+            this.textareaShow = !this.textareaShow;
+            this.textareaHide = !this.textareaHide;
+        },
+
+        async createReply() {
+            const body = {
+                "reply": {
+                    "userId": `${this.user.id}`,
+                    "tweetId": `${this.tweet.id}`,
+                    "authorName": `${this.user.name}`,
+                    "authorUser": `${this.user.username}`,
+                    "authorAvatar": `${this.user.avatar}`,
+                    "content": `${this.text}`,
+                }
+            };
+            const requisition = await this.$axios.$post(`replies`, body);
+            this.$store.commit('SET_REPLIES', requisition);
+            
+            this.$refs.newReply.reset();
+            this.textareaShow = !this.textareaShow;
+            this.textareaHide = !this.textareaHide;
+        }
     },
 }
 </script>
