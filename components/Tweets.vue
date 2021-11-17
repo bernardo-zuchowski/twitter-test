@@ -39,7 +39,7 @@
                 </div>
                 <Interactions :tweetObj="tweet"/>
                 <div v-if="tweet.replies.length > 0">
-                    <RepliesPerTweet :repliesIds="tweet.replies"/>
+                    <RepliesPerTweet class="px-8 pt-2 pb-6 -mx-4 shadow-lg rounded-b-3xl" :repliesIds="tweet.replies"/>
                 </div>
             </div>
         </div>
