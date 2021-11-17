@@ -32,13 +32,13 @@
             placeholder="Reply this tweet"
             v-model="text"
             rows="2"/>
-            <div class="text-xs absolute right-16 bottom-4 bg-gradient-to-t from-gray-50 to-white px-2">shift+enter or </div>
+            <div class="text-xs absolute right-28 bottom-4 bg-gradient-to-t from-gray-50 to-white px-2">shift+enter or </div>
             <button
-            class="absolute text-xs right-10 bottom-3 bg-white rounded-full shadow hover:shadow-inner hover:bg-gray-100">
+            class="absolute text-xs right-20 bottom-3 bg-white rounded-full shadow hover:shadow-inner hover:bg-gray-100">
                 <SolidCheckIcon class="w-5 h-5 m-1"/>
             </button>
             <button
-            class="absolute text-xs right-1 bottom-3 bg-white rounded-full shadow hover:shadow-inner hover:bg-gray-100"
+            class="absolute text-xs right-8 bottom-3 bg-white rounded-full shadow hover:shadow-inner hover:bg-gray-100"
             @click.prevent="showHide">
                 <SolidXIcon class="w-5 h-5 m-1"/>
             </button>
