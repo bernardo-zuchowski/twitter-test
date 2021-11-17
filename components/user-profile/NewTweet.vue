@@ -1,19 +1,17 @@
 <template>
     <form ref="newTweet" @submit.prevent="createTweet">
-        <input
-        class="mt-4 w-full shadow-inner rounded-full bg-gray-100 py-1 px-2 text-black"
+        <textarea
+        rows="2"
+        class="lg-min:mt-6 lg-max:mt-4 resize-none w-full shadow-inner rounded-xl bg-gray-100 py-1 px-2 text-black"
         type="text"
         placeholder="Compose new tweet"
         v-model="text"
-        >
+        />
     </form>
 </template>
 
 <script>
 export default {
-    props: {
-        authorId: String,
-    },
     data() {
         return {
             text: '',
@@ -33,7 +31,7 @@ export default {
                     "authorAvatar": `${this.user.avatar}`,
                     "content": `${this.text}`,
                     "favorites": [],
-                    "user": `${this.authorId}`,
+                    "user": `${this.user.id}`,
                     "uuid": `${this.user.uuid}`,
                 }
             })
