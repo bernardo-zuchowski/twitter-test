@@ -1,10 +1,16 @@
 <template>
     <div>
         <div class="flex justify-between text-xs pt-4 pb-4">
-            <div>
-                <SolidArrowsExpandIcon class="sm-min:hidden h-4 w-4"/>
-                <div class="sm-max:hidden">Expand</div>
-            </div>
+            <button @click.prevent="$nuxt.$emit('toggle-replies'), expandShrink()">
+                <div v-if="shrinked">
+                    <SolidArrowsExpandIcon class="sm-min:hidden h-4 w-4"/>
+                    <div class="sm-max:hidden">Expand</div>
+                </div>
+                <div v-else>
+                    <OutlineChevronUpIcon class="sm-min:hidden h-4 w-4"/>
+                    <div class="sm-max:hidden">Shrink</div>
+                </div>
+            </button>
             <div class="flex">
                 <button @click.prevent="showHide" class="px-2 flex">
                     <SolidReplyIcon class="w-4 h-4 mx-1"/>
@@ -26,9 +32,9 @@
             placeholder="Reply this tweet"
             v-model="text"
             rows="2"/>
-            <div class="text-xs absolute right-20 bottom-4 bg-gradient-to-t from-gray-50 to-white px-2">shift+enter or </div>
+            <div class="text-xs absolute right-16 bottom-4 bg-gradient-to-t from-gray-50 to-white px-2">shift+enter or </div>
             <button
-            class="absolute text-xs right-12 bottom-3 bg-white rounded-full shadow hover:shadow-inner hover:bg-gray-100">
+            class="absolute text-xs right-10 bottom-3 bg-white rounded-full shadow hover:shadow-inner hover:bg-gray-100">
                 <SolidCheckIcon class="w-5 h-5 m-1"/>
             </button>
             <button
@@ -51,7 +57,8 @@ export default {
             tweet: this.tweetObj,
             textareaShow: false,
             textareaHide: true,
-            text: ''
+            text: '',
+            shrinked: true,
         }
     },
     computed: {
@@ -63,6 +70,10 @@ export default {
         showHide() {
             this.textareaShow = !this.textareaShow;
             this.textareaHide = !this.textareaHide;
+        },
+
+        expandShrink() {
+            this.shrinked = !this.shrinked
         },
 
         async createReply() {

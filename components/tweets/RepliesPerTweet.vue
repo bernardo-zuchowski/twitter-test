@@ -1,8 +1,8 @@
 <template>
-    <div>
+    <div v-if="showReplies">
         <div class="text-sm rounded-b-xl bg-gradient-to-t from-gray-100 via-gray-100 px-3 py-2 divide-y divide-gray-300">
             Replies
-            <div v-for="reply in replies" :key="reply" class="px-3 py-2 divide-y divide-gray-200">
+            <div v-for="reply in replies" :key="reply.id" class="px-3 py-2 divide-y divide-gray-200">
                 <div class="pb-1 flex flex-wrap">
                     <img
                     class="object-cover w-5 h-5 rounded-full mr-1 self-center flex-none"
@@ -23,6 +23,11 @@ export default {
     props: {
         repliesIds: Array
     },
+    data() {
+        return {
+            showReplies: false,
+        }
+    },
     computed: {
         replies() {
             return this.$store.state.replies
@@ -35,11 +40,20 @@ export default {
     updated() {
         this.$store.dispatch('getReplies')
     },
+    
+    created() {
+        this.$nuxt.$on('toggle-replies', () => {
+            this.showReplies = !this.showReplies
+        })
+    },
 
-    methods: { // filtrar os replies do tweet
-        onlyThisReplies() {
-            return this.replies.filter(reply => reply.id === this.repliesIds)
-        }
-    }
+// renderizar apenas replys com o id relacionado ao tweet
+////////////////////////////////////////////////
+//    methods: {
+//        onlyThisReplies() {
+//            return this.replies.filter(reply => reply.id === this.repliesIds)
+//        }
+//    }
+////////////////////////////////////////////////
 }
 </script>
