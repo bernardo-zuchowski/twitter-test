@@ -1,44 +1,54 @@
 <template>
-    <form ref="newTweet" @submit.prevent="createPost">
-        <input
-        class="mt-4 w-full shadow-inner rounded-full bg-gray-100 py-1 px-2 text-black"
+    <form
+    ref="newTweet"
+    @keyup.shift.enter.prevent="createTweet"
+    class="relative">
+        <textarea
+        rows="2"
+        class="lg-min:mt-6 lg-max:mt-4 resize-none w-full shadow-inner rounded-xl bg-gray-100 py-1 px-2 text-black"
         type="text"
-        placeholder="Compose new Tweet"
+        placeholder="Compose new tweet"
         v-model="text"
-        >
+        />
+        <div class="text-xs absolute bottom-4 right-14 bg-gradient-to-t from-gray-50 to-gray-100 pr-3 pl-2">
+            shift+enter or
+        </div>
+        <button
+        @click.prevent="createTweet"
+        class="absolute text-xs right-8 bottom-3 bg-gray-50 rounded-full shadow hover:shadow-inner hover:bg-gray-100">
+            <SolidCheckIcon class="w-5 h-5 m-1"/>
+        </button>
     </form>
 </template>
 
 <script>
 export default {
-    props: {
-        authorId: String,
-    },
     data() {
         return {
             text: '',
         }
     },
     computed: {
-        loggedUser() {
-            return this.$store.state.loggedUser;
+        user() {
+            return this.$store.state.user;
         },
     },
     methods: {
-        createPost() {
-            this.$axios.post('api/tweet', {
-                "tweet": { // tornar dinânimico os dados de usuário
-                    "authorId": this.authorId,
-                    "uuid": this.loggedUser.uuid,
-                    "name": this.loggedUser.name,
-                    "username": this.loggedUser.username,
-                    "avatar": this.loggedUser.avatar,
-                    "content": this.text,
+        async createTweet() {
+            const requisition = await this.$axios.$post('tweets', {
+                "tweet": {
+                    "authorName": `${this.user.name}`,
+                    "authorUser": `${this.user.username}`,
+                    "authorAvatar": `${this.user.avatar}`,
+                    "content": `${this.text}`,
+                    "favorites": [],
+                    "user": `${this.user.id}`,
+                    "uuid": `${this.user.uuid}`,
                 }
             })
-            .then(response => {
-                this.$store.commit('SET_TWEETS', response.data)
-            })
+            
+            this.$store.commit('SET_TWEETS', requisition)
+
             this.$refs.newTweet.reset()
         },
     }

@@ -7,17 +7,23 @@ const config = environment => {
 		factories,
 		models: {
 			user: Model.extend({
-				tweet: hasMany(),
-              	favorites: hasMany(),
+			  tweet: hasMany(),
+			  favorite: hasMany(),
+			  reply: hasMany(),
 			}),
 			tweet: Model.extend({
-				user: belongsTo(),
-              	favorites: hasMany(),
+			  user: belongsTo(),
+			  favorite: hasMany(),
+			  reply: hasMany(),
 			}),
 			favorite: Model.extend({
-            	user: belongsTo(),
-              	tweet: belongsTo(),
-            }),
+			  user: belongsTo(),
+			  tweet: belongsTo(),
+			}),
+			reply: Model.extend({
+			  user: belongsTo(),
+			  tweet: belongsTo(),
+			})
 		},
 		routes() {
 			this.namespace = 'api';
@@ -26,15 +32,16 @@ const config = environment => {
 			this.get('users');
 			this.get('users/:id');
 			this.get('tweets');
-      
+			this.get('replies');
+		
 			this.post('favorites');
 			this.post('tweets');
-			this.del('tweets/:id/favorites');
+			this.post('replies');
+			this.patch('favorites/:id/tweets');
 		},
 		seeds(server) {
 			server.createList('user', 4)
       		server.createList('tweet', 5)
-			server.createList('favorite', 1)
 		},
 		serializers: {
 			application: RestSerializer,

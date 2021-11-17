@@ -2,7 +2,8 @@ export const state = () => ({
     user: [],
     users: [],
     tweets: [],
-    favorites: []
+    favorites: [],
+    replies: []
 })
 
 export const mutations =  {
@@ -18,6 +19,9 @@ export const mutations =  {
     SET_FAVORITES(state, favorites) {
         state.favorites = favorites
     },
+    SET_REPLIES(state, replies) {
+        state.replies = replies
+    },
 }
 
 export const actions =  {
@@ -31,6 +35,10 @@ export const actions =  {
     },
     async getTweets({ commit }) {
         const route = await this.$axios.get('tweets')
-        commit('SET_TWEETS', route.data.tweets)
+        commit('SET_TWEETS', route.data.tweets.reverse())
+    },
+    async getReplies({ commit }) {
+        const route = await this.$axios.get('replies')
+        commit('SET_REPLIES', route.data.replies.reverse())
     },
 }

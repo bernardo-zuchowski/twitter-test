@@ -27,7 +27,7 @@
                     <div class="px-1">89</div>
                 </div>
             </div>
-            <NewTweet class="m-4 pb-4"/>
+            <NewTweet :authorId="user.id" class="m-4 pb-4"/>
         </div>
     </div>
 </template>
